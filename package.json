@@ -1,0 +1,31 @@
+{
+  "name": "global-freedom-movement",
+  "version": "1.0.0",
+  "description": "Global Freedom Movement PDF HUB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZouhirBensm/Global-Freedom-Movement.git"
+  },
+  "author": "Zouhir Bensmaia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZouhirBensm/Global-Freedom-Movement/issues"
+  },
+  "homepage": "https://github.com/ZouhirBensm/Global-Freedom-Movement#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "http-status-codes": "^2.2.0",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
