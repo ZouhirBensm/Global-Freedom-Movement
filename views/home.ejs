@@ -1,20 +1,22 @@
 <div class="parallax"></div>
 
 <div class="middle-box">
-<div class="container">
-  <div class="icon">
-    <!-- icon -->
-    <img id="icon" src="img/banners_icons/banner2.jpeg" alt="Global Freedom Movement">
-  </div>
-  <div class="social-media-list">
-    <!-- loop throught social media cards -->
-    <% social_media.forEach(media=>{ %>
-      <div class="media-card">
-        <%-media.tag%>
-      </div>
-    <%})%>
+  <div class="container">
+    <div class="icon">
+      <!-- icon -->
+      <img id="icon" src="img/banners_icons/banner2.jpeg" alt="Global Freedom Movement">
+    </div>
+    <div class="social-media-list">
+      <!-- loop throught social media cards -->
+      <% social_media.forEach(media=>{ %>
+        <div class="media-card <%-media.name%>">
+          <a href=<%=media.url%> target="_blank" class="tooltip"><%-media.tag%></a>
+        </div>
+      <%})%>
+    </div>
   </div>
 </div>
-</div>
+
+<script async src="js/display-media.js"></script>
 
 <div class="parallax"></div>

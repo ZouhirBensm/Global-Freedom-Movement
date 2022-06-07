@@ -1,5 +1,7 @@
 body, html {
   height: 100%;
+  margin: 0;
+  min-width: 300px;
 }
 
 .parallax {
@@ -17,19 +19,27 @@ body, html {
 }
 
 /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
-@media only screen and (max-device-width: 1366px) {
+/* @media only screen and (max-device-width: 1366px) {
   .parallax {
     background-attachment: scroll;
   }
-}
+} */
 
 div.middle-box {
-  height: 100vh;
+  height: 70vh;
   background-color: white;
   font-size:36px
 }
 
-img#icon {
-  width: 800px;
-  height: 300px;
+.Twitter > a > i{
+  color: #1DA1F2
 }
+
+.Telegram > a > i {
+  color: #229ED9
+}
+
+.Email > a > i {
+  color: black;
+}
+

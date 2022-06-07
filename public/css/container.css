@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  border: 2px solid purple;
+  align-items: center;
+  height: 100%;
+}
+
+.social-media-list {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  border: 2px solid orange;
+  min-width: fit-content;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+img {
+  border: 3px solid red;
+  
+}
+
+img {
+  margin: auto;
+  width: 80%;
+  height: 30vh;
+  display: block;
+}
+
+.icon {
+  width: 100%;
+  height: fit-content;
+}
+
+i {
+  color: blue;
+}
+
+@media only screen and (max-device-width: 450px) {
+  body {
+    min-width: 300px;
+  }
+  img {
+    width: 95%;
+  }
+}
+
+
+@media only screen and (min-device-width: 720px) {
+  .social-media-list {
+    width: 80%;
+    flex-direction: row;
+  }
+  img {
+    width: 85%;
+    height: 65vh;
+  }
+  
+  div.middle-box {
+    height: 100vh;
+  }
+  
+}
+
+@media only screen and (min-device-width: 1200px) {
+  img {
+    width: 50%;
+  }
+}
+
+
+
+.tooltip {
+  position: relative;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  /* transform: rotate(90deg); */
+  font-size: 1.5rem;
+}
+
+.tooltip:hover + .tooltiptext {
+  visibility: visible;
+}
