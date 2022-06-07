@@ -43,6 +43,7 @@ function getSocialURI(href) {
 
   let display
   switch (parsedURLprotocol[1]) {
+    case 'https':
     case 'http':
       const parsedURLhttp = /^\w+\:\/\/([^\/]+)\/(.*)$/.exec(href);
       // console.log(parsedURLhttp[2])
