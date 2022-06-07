@@ -1,21 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=BenchNine:wght@300&display=swap');
+
 body, html {
   height: 100%;
   margin: 0;
   min-width: 300px;
+  width: 100%;
+  font-size: 1em;
 }
 
 .parallax {
-  /* The image used */
-  background-image: url('../img/banners_icons/freedom.jpg');
-
   /* Full height */
   height: 100%; 
+  width: 100%;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.parallax.freedom {
+  /* The image used */
+  background-image: url('../img/banners_icons/freedom2.jpg');
+}
+
+.parallax.bird {
+  /* The image used */
+  background-image: url('../img/banners_icons/bird.jpg');
 }
 
 /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */

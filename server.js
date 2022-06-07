@@ -15,7 +15,7 @@ wserver.use(express.static("public"))
 
 
 wserver.get('/', (req,res)=>{
-  const { social_media } = require('./public/js/social.data')
+  const { social_media } = require('./social.data')
   
   res.render('home', {social_media})
 })

@@ -5,14 +5,31 @@ const atags = document.getElementsByTagName("a")
 for (i=0; i< atags.length; i++) {
   
   let display = getSocialURI(atags[i].href)
-  console.log(display)
-
+  console.log(display, display.length)
+  
   const span = document.createElement("span");
   span.innerHTML = display
   span.classList.add("tooltiptext");
   // code to be executed
   // atags[i].firstChild.appendChild(span);
   atags[i].insertAdjacentElement("afterend", span);
+  // if(display.length < 10){
+  // } 
+  // else {
+  //   const span1 = document.createElement("span");
+  //   const br = document.createElement("br")
+  //   const span2 = document.createElement("span");
+  //   span1.innerHTML = display.slice(0,9)
+  //   span2.innerHTML = display.slice(10,display.length)
+  //   span1.classList.add("tooltiptext");
+  //   span2.classList.add("tooltiptext");
+  //   // code to be executed
+  //   // atags[i].firstChild.appendChild(span);
+  //   atags[i].insertAdjacentElement("afterend", span2);
+  //   atags[i].insertAdjacentElement("afterend", br);
+  //   atags[i].insertAdjacentElement("afterend", span1);
+  // }
+
 
 }
 

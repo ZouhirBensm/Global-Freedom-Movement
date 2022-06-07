@@ -1,4 +1,16 @@
-social_media = [
+let social_media = [
+  {
+    name: "Email",
+    number: 1,
+    url: "mailto:TheDayWeEndIt@protonmail.com",
+    tag: '<i class="fa fa-envelope-o" aria-hidden="true"></i>'
+  },
+  {
+    name: "Telegram",
+    number: 1,
+    url: "//t.me/joinchat/cX-_NtmuskhhNjAx",
+    tag: '<i class="fa-brands fa-telegram"></i>',
+  },
   {
     name: "Twitter",
     number: 1,
@@ -16,18 +28,6 @@ social_media = [
     number: 3,
     url: "//twitter.com/citizensforces",
     tag: '<i class="fa-brands fa-twitter"></i>',
-  },
-  {
-    name: "Telegram",
-    number: 1,
-    url: "//t.me/joinchat/cX-_NtmuskhhNjAx",
-    tag: '<i class="fa-brands fa-telegram"></i>',
-  },
-  {
-    name: "Email",
-    number: 1,
-    url: "mailto:TheDayWeEndIt@protonmail.com",
-    tag: '<i class="fa fa-envelope-o" aria-hidden="true"></i>'
   },
 ]
 
