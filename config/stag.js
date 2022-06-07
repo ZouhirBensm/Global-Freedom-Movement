@@ -1,5 +1,5 @@
 module.exports = {
   port: process.env.PORT,
-  domain: process.env.REACT_APP_DOMAIN,
+  domain: process.env.DOMAIN,
   environment: process.env.ENVIRONMENT,
 }
