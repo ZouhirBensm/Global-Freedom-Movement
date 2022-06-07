@@ -4,8 +4,8 @@ console.log("atags: \n", atags)
 
 for (i=0; i< atags.length; i++) {
   
+  console.log("href: \n", atags[i].href)
   let display = getSocialURI(atags[i].href)
-  console.log("display: \n", display)
   
   const span = document.createElement("span");
   span.innerHTML = display
