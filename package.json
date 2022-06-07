@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "16.14.2"
+  },
   "name": "global-freedom-movement",
   "version": "1.0.0",
   "description": "Global Freedom Movement PDF HUB",
