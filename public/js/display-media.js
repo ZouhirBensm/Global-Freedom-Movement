@@ -1,11 +1,11 @@
 const atags = document.getElementsByTagName("a")
-// console.log(cards)
+console.log("atags: \n", atags)
 
 
 for (i=0; i< atags.length; i++) {
   
   let display = getSocialURI(atags[i].href)
-  console.log(display, display.length)
+  console.log("display: \n", display)
   
   const span = document.createElement("span");
   span.innerHTML = display
