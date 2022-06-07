@@ -36,10 +36,10 @@ for (i=0; i< atags.length; i++) {
 
 function getSocialURI(href) {
 
-  console.log("href: \n", href)
+  console.log("href2: \n", href)
 
   const parsedURLprotocol =/^(\w+)\:/.exec(href)
-  // console.log("proto: ", parsedURLprotocol[1])
+  console.log("proto2: \n", parsedURLprotocol[1])
 
   let display
   switch (parsedURLprotocol[1]) {
