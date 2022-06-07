@@ -4,7 +4,7 @@ console.log("atags: \n", atags)
 
 for (i=0; i< atags.length; i++) {
   
-  console.log("href: \n", atags[i].href)
+  // console.log("href: \n", atags[i].href)
   let display = getSocialURI(atags[i].href)
   
   const span = document.createElement("span");
@@ -36,7 +36,7 @@ for (i=0; i< atags.length; i++) {
 
 function getSocialURI(href) {
 
-  // console.log(href)
+  console.log("href: \n", href)
 
   const parsedURLprotocol =/^(\w+)\:/.exec(href)
   // console.log("proto: ", parsedURLprotocol[1])
