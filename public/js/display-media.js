@@ -2,7 +2,7 @@ const atags = document.getElementsByTagName("a")
 console.log("atags: \n", atags)
 
 
-for (i=0; i< atags.length; i++) {
+for (i=1; i< atags.length; i++) {
   
   // console.log("href: \n", atags[i].href)
   let display = getSocialURI(atags[i].href)
