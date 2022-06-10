@@ -11,16 +11,15 @@
   <script src="https://kit.fontawesome.com/80d236052e.js" crossorigin="anonymous"></script>
   <script>
     console.log("layout received environment variables: ", '<%- environment %>', '<%- port %>')
-    let protocol, sprotocol, port, domain
+    let protocol, sprotocol, port = port, domain
     if('<%-environment%>' === 'developement'){
       protocol = 'http'
       sprotocol = 'https'
-      port = 3005
+      // port = 3005
       domain = 'localhost'
     } else if ('<%- environment %>' === 'staging') {
       protocol = 'http'
       sprotocol = 'https'
-      port = port
       domain = 'global-freedom-movement.herokuapp.com'
     } else {
       console.error("You have a problem with the ejs variable 'environment' you are receiving on layout.ejs")
