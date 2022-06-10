@@ -33,7 +33,7 @@ async function sendEntryToExpressWebServer(entryobject) {
   // https://localhost:3000
   // https://hidden-plateau-87550.herokuapp.com
 
-  const endpoint = `${sprotocol}://${domain}:${port}/backlog_register`
+  const endpoint = `${protocol}://${domain}${environment === 'developement'?`:${port}`:''}/backlog_register`
   console.log("endpoint: ", endpoint)
 
   // 2
