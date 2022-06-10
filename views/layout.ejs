@@ -15,11 +15,12 @@
     let endpoint
     if (environment === 'developement') {
       // http://localhost:3005
-      endpoint = `${window.location.protocol}//${domain}:${port}`
+      // window.location.protocol
+      endpoint = `http://${domain}:${port}`
     } else if (environment === 'staging'){
       // http://hidden-plateau-87550.herokuapp.com
       // https://hidden-plateau-87550.herokuapp.com
-      endpoint = `${window.location.protocol}//${domain}`
+      endpoint = `https://${domain}`
     }
   </script>
 </head>

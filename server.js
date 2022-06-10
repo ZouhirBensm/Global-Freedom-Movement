@@ -36,7 +36,7 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 
 
 wserver.post('/backlog_register', (req,res)=>{
-  // console.log("receiving:", req.body)
+  console.log("receiving:", req.body)
   res.json(req.body)
 })
 

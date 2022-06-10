@@ -31,7 +31,7 @@ async function sendEntryToExpressWebServer(entryobject) {
 
 
 
-  // console.log("endpoint: ", endpoint)
+  console.log("endpoint: ", endpoint)
 
   // 2
   const response = await fetch(`${endpoint}/backlog_register`, {
@@ -44,5 +44,5 @@ async function sendEntryToExpressWebServer(entryobject) {
   })
   // console.log(response)
   const json_response = await response.json()
-  // console.log(json_response)
+  console.log("server response: ", json_response)
 }
