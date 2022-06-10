@@ -13,7 +13,7 @@ module.exports = (req,res,next)=>{
         next()
     } else {
       if (req.header('x-forwarded-proto') !== 'https')
-        res.send("cannot send requests with http protocol")
+        next(new Error("Cannot send requests with http protocol"))
       else 
         next()
     }
