@@ -22,16 +22,16 @@ document.getElementById("form").onsubmit = function(e) {
   sendEntryToExpressWebServer(entryobject)
 
   // 1
-  console.log("Async?")
+  // console.log("Async?")
 }
 
 async function sendEntryToExpressWebServer(entryobject) {
-  console.log(entryobject)
-  console.log(environment, port, domain)
+  // console.log(entryobject)
+  // console.log(environment, port, domain)
 
 
 
-  console.log("endpoint: ", endpoint)
+  // console.log("endpoint: ", endpoint)
 
   // 2
   const response = await fetch(`${endpoint}/backlog_register`, {
@@ -42,7 +42,7 @@ async function sendEntryToExpressWebServer(entryobject) {
     },
     body: JSON.stringify(entryobject)
   })
-  console.log(response)
+  // console.log(response)
   const json_response = await response.json()
-  console.log(json_response)
+  // console.log(json_response)
 }

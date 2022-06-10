@@ -27,7 +27,7 @@ wserver.use(redirectHTTPS)
 
 wserver.get('/', objectifyEnvVars, (req,res)=>{
   const { social_media } = require('./social.data')
-  console.log("DO WE HAVE the F**in data", res.locals.environmentVars)
+  // console.log("DO WE HAVE the F**in data", res.locals.environmentVars)
   res.render('home', {
     social_media, 
     environmentVars: res.locals.environmentVars
@@ -36,7 +36,7 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 
 
 wserver.post('/backlog_register', (req,res)=>{
-  console.log("receiving:", req.body)
+  // console.log("receiving:", req.body)
   res.json(req.body)
 })
 
