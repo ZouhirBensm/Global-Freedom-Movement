@@ -23,7 +23,7 @@ wserver.use(detEnvironment)
 
 wserver.get('/', (req,res)=>{
   const { social_media } = require('./social.data')
-  // console.log("DO WE HAVE the F**in data", social_media)
+  console.log("DO WE HAVE the F**in data", res.locals.environment)
   res.render('home', {social_media, environment: res.locals.environment})
 })
 
