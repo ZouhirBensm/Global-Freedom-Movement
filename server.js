@@ -1,7 +1,7 @@
 // Added environment variables
 require('dotenv').config()
 // Custom environment variables
-const ENV = require('./config/base'),
+const ENV = require('./config/config'),
 
 layouts = require('express-ejs-layouts'),
 express = require('express'),
@@ -15,13 +15,13 @@ wserver.use(layouts)
 wserver.use(express.static("public"))
 
 const cachingMiddleware = require('./middleware/cachingMiddleware')
-const detEnvironment = require('./middleware/determine-environment')
+const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
 
-wserver.use(detEnvironment)
+// wserver.use(objectifyEnvVars)
 
 
 
-wserver.get('/', (req,res)=>{
+wserver.get('/', objectifyEnvVars, (req,res)=>{
   const { social_media } = require('./social.data')
   console.log("DO WE HAVE the F**in data", res.locals.environmentVars)
   res.render('home', {

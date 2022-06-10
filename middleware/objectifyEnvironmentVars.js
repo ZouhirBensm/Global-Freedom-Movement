@@ -1,4 +1,4 @@
-const ENV = require('../config/base')
+const ENV = require('../config/config')
 
 module.exports = (req,res,next)=>{
   // console.log(ENV.environment)
