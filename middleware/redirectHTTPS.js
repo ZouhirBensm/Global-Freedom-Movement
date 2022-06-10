@@ -1,4 +1,5 @@
 const ENV = require('../config/config')
+const { NotGetWithHTTP } = require('../custom-errors/custom-errors')
 
 module.exports = (req,res,next)=>{
   console.log("what is the Fuckin protocol: ", req.header('x-forwarded-proto'))
@@ -13,7 +14,7 @@ module.exports = (req,res,next)=>{
         next()
     } else {
       if (req.header('x-forwarded-proto') !== 'https')
-        next(new Error("Cannot send requests with http protocol"))
+        next(new NotGetWithHTTP())
       else 
         next()
     }

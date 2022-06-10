@@ -20,6 +20,7 @@ wserver.use(express.static("public"))
 const cachingMiddleware = require('./middleware/cachingMiddleware')
 const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
+const errorHandler = require('./middleware/errorsMiddleware')
 
 wserver.use(redirectHTTPS)
 
@@ -40,6 +41,8 @@ wserver.post('/backlog_register', (req,res)=>{
   res.json(req.body)
 })
 
+
+wserver.use(errorHandler.errorHandler)
 
 wserver.listen(ENV.port, () => {
   console.log(`Global-Freedom-Movement web server is running on port ${wserver.get("port")}`)
