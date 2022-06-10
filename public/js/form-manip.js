@@ -1,3 +1,5 @@
+const { environment } = require("../../config/config")
+
 let global = 55
 document.getElementById("form").onsubmit = function(e) {
   e.preventDefault()
@@ -30,10 +32,15 @@ async function sendEntryToExpressWebServer(entryobject) {
   console.log(entryobject)
   console.log(environment, protocol, sprotocol, port, domain)
 
-  // https://localhost:3000
-  // https://hidden-plateau-87550.herokuapp.com
+  let endpoint
+  if (environment === 'developement') {
+    // http://localhost:3005
+    endpoint = `${protocol}://${domain}:${port}/backlog_register`
+  } else if (environment === 'staging'){
+    // https://hidden-plateau-87550.herokuapp.com
+    endpoint = `${sprotocol}://${domain}/backlog_register`
+  }
 
-  const endpoint = `${protocol}://${domain}${environment === 'developement'?`:${port}`:''}/backlog_register`
   console.log("endpoint: ", endpoint)
 
   // 2
