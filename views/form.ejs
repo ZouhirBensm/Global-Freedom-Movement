@@ -1,0 +1,63 @@
+<div>
+  <h2>Register to our Backlog of anti-NWO patisans</h2>
+  <form id="form">
+    <div>
+      <label for="idemail">E-mail</label>
+      <input 
+        type="email" 
+        name="email" 
+        id="idemail" 
+        placeholder="example@example.com"
+        pattern="^[^@.]+@[^@.]+\.{1}\w{1,6}$"
+        value="z@example.com"
+        required
+      >
+      <span class="format email">Format: characters@characters.characters</span>
+    </div>
+    <div>
+      <label for="idphone"><a href="info/phone">Phone number</a></label>
+      <input 
+        type="tel" 
+        name="phone" 
+        id="idphone"
+        title="Please follow one of the formats diplayed below"
+        pattern="([0-9]{3} ?|\([0-9]{3}\) )[0-9]{3}[-| ]?[0-9]{4}" 
+        placeholder="example: 123-123-1234"
+        value="(888) 777-6666"
+        required
+      >
+      <div class="format phone">
+        Formats
+        <ul>
+          <li>1231231234</li>
+          <li>123 1231234</li>
+          <li>123123 1234</li>
+          <li>123 1231234</li>
+          <li>123123-1234</li>
+          <li>123 123 1234</li>
+          <li>(123) 123 1234</li>
+          <li>(123) 123-1234</li>
+          <li>123 123-1234</li>
+        </ul>
+      </div>
+    </div>
+    <div class="checkboxes">
+      <div>
+        <label for="idnewsletter">Subscribe to our news letter</label>
+        <input type="checkbox" name="newsletter" id="idnewsletter">
+      </div>
+      <div>
+        <label for="idnewsletter">Is the inputed phone number of type <a href="/info/burner">burner</a>?</label>
+        <input type="checkbox" name="brn" id="idbrn">
+      </div>
+      <div>
+        <label for="idnewsletter">Do you agree with our <a href="terms-and-conditions">terms and conditions?</label>
+        <input type="checkbox" name="terms" id="idtermns" checked required>
+      </div>
+    </div>
+    <div>
+    </div>
+    <button type="submit">Send</button>
+  </form>
+  <script src="js/form-manip.js"></script>
+</div>
