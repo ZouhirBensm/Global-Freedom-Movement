@@ -7,8 +7,8 @@ layouts = require('express-ejs-layouts'),
 express = require('express'),
 wserver = express()
 
-// wserver.use(express.json())
-// wserver.use(express.urlencoded())
+wserver.use(express.json())
+wserver.use(express.urlencoded({extended: true}))
 wserver.set("port", ENV.port)
 wserver.set("view engine", "ejs")
 wserver.use(layouts)
@@ -31,8 +31,9 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 })
 
 
-wserver.get('/backlog_register', (req,res)=>{
-  console.log("receiving: ". req.body)
+wserver.post('/backlog_register', (req,res)=>{
+  console.log("receiving:", req.body)
+  res.json(req.body)
 })
 
 

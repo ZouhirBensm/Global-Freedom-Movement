@@ -21,21 +21,31 @@ document.getElementById("form").onsubmit = function(e) {
     brn: e.target.elements.brn.checked,
   }
   sendEntryToExpressWebServer(entryobject)
+
+  // 1
+  console.log("Async?")
 }
 
-function sendEntryToExpressWebServer(entryobject) {
+async function sendEntryToExpressWebServer(entryobject) {
   console.log(entryobject)
-  console.log(global)
-  console.log(protocol, sprotocol, port, domain)
+  console.log(environment, protocol, sprotocol, port, domain)
 
-  // const response = fetch(`${process.env.ROOT}/backlog_register`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  //   },
-  //   body: JSON.stringify(entryobject)
-  // })
+  // https://localhost:3000
+  // https://hidden-plateau-87550.herokuapp.com
 
-  // console.log(response)
+  const endpoint = `${sprotocol}://${domain}:${port}/backlog_register`
+  console.log("endpoint: ", endpoint)
+
+  // 2
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(entryobject)
+  })
+  console.log(response)
+  const json_response = await response.json()
+  console.log(json_response)
 }
