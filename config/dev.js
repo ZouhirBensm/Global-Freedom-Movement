@@ -1,5 +1,5 @@
 module.exports = {
-  port: 3005,
+  port: process.env.PORT,
   domain: process.env.DOMAIN,
-  environment: 'developement',
+  environment: process.env.NODE_ENV,
 }
