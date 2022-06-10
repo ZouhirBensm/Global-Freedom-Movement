@@ -1,6 +1,3 @@
-const { environment } = require("../../config/config")
-
-let global = 55
 document.getElementById("form").onsubmit = function(e) {
   e.preventDefault()
   // console.log(e.target.elements.email.value)
