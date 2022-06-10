@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="css/form.css">
   <script src="https://kit.fontawesome.com/80d236052e.js" crossorigin="anonymous"></script>
   <script>
-    console.log("layout received environment variables: ", '<%- environment %>', '<%- port %>')
-    let protocol, sprotocol, port = port, domain
+    console.log("layout received environment variables: ", '<%- environment %>', '<%- port %>', typeof '<%- port %>', <%- port %>, typeof <%- port %>)
+    let protocol, sprotocol, port = <% port %>, domain
     if('<%-environment%>' === 'developement'){
       protocol = 'http'
       sprotocol = 'https'
