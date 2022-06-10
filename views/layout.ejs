@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/form.css">
   <script src="https://kit.fontawesome.com/80d236052e.js" crossorigin="anonymous"></script>
   <script>
-    console.log('<%- environment %>')
+    console.log("layout received environment variables: ", '<%- environment %>', '<%- port %>')
     let protocol, sprotocol, port, domain
     if('<%-environment%>' === 'developement'){
       protocol = 'http'
@@ -20,6 +20,7 @@
     } else if ('<%- environment %>' === 'staging') {
       protocol = 'http'
       sprotocol = 'https'
+      port = port
       domain = 'global-freedom-movement.herokuapp.com'
     } else {
       console.error("You have a problem with the ejs variable 'environment' you are receiving on layout.ejs")
