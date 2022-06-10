@@ -28,14 +28,18 @@ document.getElementById("form").onsubmit = function(e) {
 async function sendEntryToExpressWebServer(entryobject) {
   console.log(entryobject)
   console.log(environment, protocol, sprotocol, port, domain)
+  
+  // console.log(window.location.protocol)
 
   let endpoint
   if (environment === 'developement') {
     // http://localhost:3005
-    endpoint = `${protocol}://${domain}:${port}/backlog_register`
+    // https://localhost:3005
+    endpoint = `${window.location.protocol}//${domain}:${port}/backlog_register`
   } else if (environment === 'staging'){
+    // http://hidden-plateau-87550.herokuapp.com
     // https://hidden-plateau-87550.herokuapp.com
-    endpoint = `${sprotocol}://${domain}/backlog_register`
+    endpoint = `${window.location.protocol}//${domain}/backlog_register`
   }
 
   console.log("endpoint: ", endpoint)
