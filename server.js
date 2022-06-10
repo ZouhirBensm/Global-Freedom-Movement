@@ -2,10 +2,11 @@
 require('dotenv').config()
 // Custom environment variables
 const ENV = require('./config/config'),
-
 layouts = require('express-ejs-layouts'),
 express = require('express'),
 wserver = express()
+
+
 
 wserver.use(express.json())
 wserver.use(express.urlencoded({extended: true}))
@@ -14,10 +15,13 @@ wserver.set("view engine", "ejs")
 wserver.use(layouts)
 wserver.use(express.static("public"))
 
+
+
 const cachingMiddleware = require('./middleware/cachingMiddleware')
 const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
+const redirectHTTPS = require('./middleware/redirectHTTPS')
 
-// wserver.use(objectifyEnvVars)
+wserver.use(redirectHTTPS)
 
 
 
