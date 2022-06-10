@@ -1,3 +1,5 @@
+const httpStatus = require("http-status-codes")
+
 // Other Error Handlers
 const errorHandler = (err, req ,res, next) => {
   console.error('\n\nError Handler, before Express default error handler\n\n')

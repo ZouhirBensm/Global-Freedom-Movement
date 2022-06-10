@@ -20,7 +20,7 @@ wserver.use(express.static("public"))
 const cachingMiddleware = require('./middleware/cachingMiddleware')
 const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
-const errorHandler = require('./middleware/errorsMiddleware')
+const errorHandler = require('./error-management/errorsMiddleware')
 
 wserver.use(redirectHTTPS)
 

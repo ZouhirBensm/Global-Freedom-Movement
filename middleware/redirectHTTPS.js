@@ -1,5 +1,6 @@
 const ENV = require('../config/config')
-const { NotGetWithHTTP } = require('../custom-errors/custom-errors')
+const httpStatus = require("http-status-codes")
+const { NotGetWithHTTP } = require('../error-management/custom-errors')
 
 module.exports = (req,res,next)=>{
   console.log("what is the Fuckin protocol: ", req.header('x-forwarded-proto'))
@@ -9,7 +10,7 @@ module.exports = (req,res,next)=>{
 
     if(req.method==="GET"){
       if (req.header('x-forwarded-proto') !== 'https')
-        res.redirect(`https://${req.header('host')}${req.url}`)
+        res.status(httpStatus.StatusCodes.MOVED_TEMPORARILY).redirect(`https://${req.header('host')}${req.url}`)
       else
         next()
     } else {
