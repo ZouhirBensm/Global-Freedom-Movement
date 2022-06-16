@@ -23,7 +23,7 @@ class SQLQuery {
             database : process.env.DB_NAME,
             port: process.env.DB_PORT,
           });
-          connection.connect((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection established");});
+          connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
         } 
         if(value==="endconnect"){
           connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
