@@ -33,7 +33,7 @@ const errorHandler = require('./error-management/errorsMiddleware')
 
 
 
-// wserver.use(redirectHTTPS)
+wserver.use(redirectHTTPS)
 
 
 wserver.get('/', objectifyEnvVars, (req,res)=>{
