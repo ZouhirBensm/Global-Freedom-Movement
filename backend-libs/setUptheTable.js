@@ -2,14 +2,6 @@
 const { ENV } = require('../config/config')
 mysql = require('mysql')
 
-// function connect(){
-//   connection.connect((err) => {err? console.log(err): null; console.log("mySQL connection established");});
-// }
-
-// function endconnect(){
-//   connection.connect((err) => {err? console.log(err): null; console.log("mySQL connection established");});
-// }
-
 
 var connection
 
@@ -39,11 +31,6 @@ class SQLQuery {
     
 
   }
-
-
-  // endconnect(){
-  //   connection.end((err) => {err? next(err): null; console.log("mySQL connection closing line 22");});
-  // }
 
 
   checkIfpresent(tableName = this.tableName) {
@@ -81,11 +68,13 @@ class SQLQuery {
 
   
   insertEntry(email, phone_number, is_subscriber_newsletter, is_brn_phone, tableName = this.tableName){
+    console.log("B")
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       connection.query(`
       INSERT INTO ${tableName}(email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES('${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
       `, function (error, results) {
+        console.log("C")
         if (error) reject(error);
         resolve(results)
       });
@@ -94,8 +83,6 @@ class SQLQuery {
 
 
 }
-
-// let sqlQuery = new SQLQuery(ENV, "subscribers")
 
 
 module.exports = {SQLQuery}

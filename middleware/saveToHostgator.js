@@ -23,12 +23,12 @@ module.exports = async (req,res,next)=>{
   if (!present) {
     sqlQuery.createTable()
   }
-  
+  console.log("A")
   let result = await sqlQuery.insertEntry(...Object.values(req.body))
   // let result = sqlQuery.insertEntry(...Object.values(req.body))
 
   
-  console.log("GGGGGG:",  result)
+  console.log("D",  result)
   let resolvedto2 = await SQLQuery.cable("endconnect")
   console.log(resolvedto2)
 
