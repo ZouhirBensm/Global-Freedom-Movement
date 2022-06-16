@@ -21,7 +21,7 @@ class SQLQuery {
             user     : process.env.DB_USER,
             password : process.env.DB_PASSWORD,
             database : process.env.DB_NAME,
-            port: process.env.DB_PORT
+            // port: process.env.DB_PORT
           });
           // to deploy
           connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
