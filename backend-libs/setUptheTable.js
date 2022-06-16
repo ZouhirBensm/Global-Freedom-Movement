@@ -23,6 +23,7 @@ class SQLQuery {
             database : process.env.DB_NAME,
             port: process.env.DB_PORT
           });
+          // to deploy
           connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
         } 
         if(value==="endconnect"){
