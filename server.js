@@ -52,7 +52,7 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 // postToNGINXandTrySave
 wserver.post('/backlog_register', saveToHostgator, (req,res) => {
 
-  console.log("in server.js: ", res.locals.insertResultRessolvedVal)
+  // console.log("in server.js: ", res.locals.insertResultRessolvedVal)
 
 
   res.json({SRV: {
