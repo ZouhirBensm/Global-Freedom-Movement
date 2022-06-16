@@ -63,6 +63,15 @@ wserver.post('/backlog_register', saveToHostgator, (req,res) => {
 })
 
 
+wserver.post('/test', (req,res) => {
+
+  res.json({SRV: {
+    type: "Success",
+    message: ["test post is working"]
+  }})
+
+})
+
 
 
 wserver.use(errorHandler.errorHandler)
