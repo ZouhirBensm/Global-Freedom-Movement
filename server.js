@@ -49,19 +49,17 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
   })
 })
 
-saveToHostgator
-wserver.post('/backlog_register', postToNGINXandTrySave, saveToHostgator, (req,res) => {
+// postToNGINXandTrySave
+wserver.post('/backlog_register', saveToHostgator, (req,res) => {
 
-  res.json({
-    didSave: false,
-    msg: [`Hello from ${ENV.domain} web server pn port ${ENV.port}`],
-    Igot: req.body,
-    i: undefined,
-  })
+  console.log("in server.js: ", res.locals.insertResultRessolvedVal)
 
 
+  res.json({SRV: {
+    type: "Success",
+    message: ["You have successfully submited your form! Thank you."]
+  }})
 
-  
 })
 
 

@@ -1,5 +1,6 @@
 // const { ENV, connection } = require('../config/config')
 const { ENV } = require('../config/config')
+const { CurrentlySavingNotWorkingFromServer } = require('../error-management/custom-errors')
 mysql = require('mysql')
 
 
@@ -22,10 +23,10 @@ class SQLQuery {
             database : process.env.DB_NAME,
             port: process.env.DB_PORT,
           });
-          connection.connect((err) => {err? reject(err): null; resolve("mySQL connection established");});
+          connection.connect((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection established");});
         } 
         if(value==="endconnect"){
-          connection.end((err) => {err? reject(err): null; resolve("mySQL connection closing");});
+          connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
         }
     });
     
@@ -39,12 +40,12 @@ class SQLQuery {
         connection.query(`
         SHOW tables
         `, function (error, results) {
-          if (error) reject(error);
+          if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
           // console.log('found: ', results[0]['Tables_in_global-partisans'])
-          results = results.map((element) => {return element['Tables_in_global-partisans']})
+          results = results?.map((element) => {return element['Tables_in_global-partisans']})
           console.log('found: ', results)
-          const present = results.includes(tableName) 
-          resolve(present)
+          const present = results?.includes(tableName) 
+          return resolve(present)
         });
     });
     
@@ -61,22 +62,20 @@ class SQLQuery {
       is_subscriber_newsletter BIT(1)
     ) ENGINE InnoDB
     `, function (error, results) {
-      if (error) throw error;
+      if (error) return new CurrentlySavingNotWorkingFromServer();
       console.log('Created table: ', results);
     });
   }
 
   
   insertEntry(email, phone_number, is_subscriber_newsletter, is_brn_phone, tableName = this.tableName){
-    console.log("B")
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       connection.query(`
       INSERT INTO ${tableName}(email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES('${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
       `, function (error, results) {
-        console.log("C")
-        if (error) reject(error);
-        resolve(results)
+        if (error) {return reject(new CurrentlySavingNotWorkingFromServer());}
+        return resolve(results)
       });
     });
   }

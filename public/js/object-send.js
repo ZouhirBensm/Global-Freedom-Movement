@@ -24,9 +24,12 @@ async function sendEntryToExpressWebServer(entryobject) {
   }
   // console.log(response)
   let json_response
+  try {json_response = await response.json()} catch(e) {console.error(e)}
+
   if(response.ok) {
-    try {json_response = await response.json()} catch(e) {console.error(e)}
     console.log("server response: ", json_response)
     // if(json_response.didSave === true) {window.location.href = `${endpoint}?popup=Data has been saved on the server`;} else if (json_response.didSave === false) {console.log("fetch() and .json() succeeded and Data has not been saved on the server")} else {console.log("fetch() and .json() succeeded but json_response received is missing the didSave property")}
-  } 
+  } else {
+    console.log("Should be the custom error: ", json_response)
+  }
 }

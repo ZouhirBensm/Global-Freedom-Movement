@@ -2,48 +2,48 @@ const {SQLQuery} = require('../backend-libs/setUptheTable');
 
 
 module.exports = async (req,res,next)=>{
-  console.log("saving to hostgator receiving: ", req.body)
+  console.log("\n___Saving to Hostgator receiving:___\n", req.body)
 
   // save to mysql
   // Callbacks execute last
   // new Promise()
 
 
-  // Execute the script to setup the table
-  let resolvedto1 = await SQLQuery.cable("connect")
-  console.log(resolvedto1)
+  let connectResolvedVal, isPresentTableResolvedVal, insertResultRessolvedVal, disconnectResolvedVal
+  // CONNECT
+  try { connectResolvedVal = await SQLQuery.cable("connect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+  
+  console.log("if resolved1: ", connectResolvedVal)
 
   let sqlQuery = new SQLQuery(ENV, "subscribers")
 
   console.log("BETWEEN")
-  present = await sqlQuery.checkIfpresent()
-
-  console.log(present)
+  // *CHECK TABLE PRESENCE*
+  try { isPresentTableResolvedVal = await sqlQuery.checkIfpresent() } catch(err) {console.log("\nPromise returned in sqlQuery.checkIfpresent() rejected with a error\n"); return next(err)}
   
-  if (!present) {
-    sqlQuery.createTable()
+
+  console.log("isPresentTableResolvedVal: ", isPresentTableResolvedVal)
+  
+  if (!isPresentTableResolvedVal) {
+    try {sqlQuery.createTable()} catch(cerr) {return next(cerr)}
   }
-  console.log("A")
-  let result = await sqlQuery.insertEntry(...Object.values(req.body))
-  // let result = sqlQuery.insertEntry(...Object.values(req.body))
+  
+  // *INSERT THE ENTRY*
+  try { insertResultRessolvedVal = await sqlQuery.insertEntry(...Object.values(req.body)) } catch(err) {console.log("\nPromise returned in sqlQuery.insertEntry() rejected with a error\n"); return next(err)}
 
   
-  console.log("D",  result)
-  let resolvedto2 = await SQLQuery.cable("endconnect")
-  console.log(resolvedto2)
+  console.log("insertResultRessolvedVal",  insertResultRessolvedVal)
 
-  return res.json({
-    didSave: true,
-    msg: [`Hello from ${ENV.domain} web server on port ${ENV.port}`],
-    Igot: req.body,
-    i: undefined,
-  })
+  // *DISCONNECT*
+  try { disconnectResolvedVal = await SQLQuery.cable("endconnect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('endconnect') rejected with a error\n"); return next(err)}
 
   
+  console.log(disconnectResolvedVal)
 
+  res.locals.insertResultRessolvedVal = insertResultRessolvedVal
+  
+  return next()
 
-
-  console.log("Async? YES line END")
 
 
 
@@ -61,6 +61,11 @@ module.exports = async (req,res,next)=>{
   //   })
   //   console.log('3333')
   // } else {
-  //   next()
+  //     res.json({
+  //     didSave: false,
+  //     msg: [`Hello from ${ENV.domain} web server pn port ${ENV.port}`],
+  //     Igot: req.body,
+  //     i: undefined,
+  //   })
   // }
 }

@@ -24,7 +24,16 @@ class NotGetWithHTTP extends CustomError {
   }
 }
 
+class CurrentlySavingNotWorkingFromServer extends CustomError {
+  constructor(){
+    super()
+    this.type = this.constructor.name
+    this.message = ['Cannot save content. Error is server side. Our maintainers will fix it as soon as possible.']
+  }
+}
+
 
 module.exports = {
-  NotGetWithHTTP
+  NotGetWithHTTP,
+  CurrentlySavingNotWorkingFromServer
 }
