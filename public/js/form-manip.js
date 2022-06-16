@@ -1,3 +1,4 @@
+// Transform into a promise, when resolves returns the value of the object
 document.getElementById("form").onsubmit = function(e) {
   e.preventDefault()
   // console.log(e.target.elements.email.value)
@@ -19,30 +20,15 @@ document.getElementById("form").onsubmit = function(e) {
     newsletter: e.target.elements.newsletter.checked,
     brn: e.target.elements.brn.checked,
   }
+
+  // encrypt the entry object
+  // encrypted result
+  // decrypt the result locally
+  // send the encrypted data to the server
+
   sendEntryToExpressWebServer(entryobject)
 
   // 1
   // console.log("Async?")
 }
 
-async function sendEntryToExpressWebServer(entryobject) {
-  // console.log(entryobject)
-  // console.log(environment, port, domain)
-
-
-
-  console.log("endpoint: ", endpoint)
-
-  // 2
-  const response = await fetch(`${endpoint}/backlog_register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify(entryobject)
-  })
-  // console.log(response)
-  const json_response = await response.json()
-  console.log("server response: ", json_response)
-}

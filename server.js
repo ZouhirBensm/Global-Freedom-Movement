@@ -1,11 +1,17 @@
 // Added environment variables
 require('dotenv').config()
 // Custom environment variables
-const ENV = require('./config/config'),
+const { ENV } = require('./config/config'),
 layouts = require('express-ejs-layouts'),
 express = require('express'),
-wserver = express()
+mysql = require('mysql'),
+fetch = require('node-fetch'),
+XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest,
 
+
+ 
+
+wserver = express()
 
 
 wserver.use(express.json())
@@ -19,10 +25,18 @@ wserver.use(express.static("public"))
 
 const cachingMiddleware = require('./middleware/cachingMiddleware')
 const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
+const postToNGINXandTrySave = require('./middleware/postToNGINXandTrySave')
+const saveToHostgator = require('./middleware/saveToHostgator')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
 const errorHandler = require('./error-management/errorsMiddleware')
 
+
+
+
 wserver.use(redirectHTTPS)
+
+
+
 
 
 
@@ -35,11 +49,22 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
   })
 })
 
+saveToHostgator
+wserver.post('/backlog_register', postToNGINXandTrySave, saveToHostgator, (req,res) => {
 
-wserver.post('/backlog_register', (req,res)=>{
-  console.log("receiving:", req.body)
-  res.json(req.body)
+  res.json({
+    didSave: false,
+    msg: [`Hello from ${ENV.domain} web server pn port ${ENV.port}`],
+    Igot: req.body,
+    i: undefined,
+  })
+
+
+
+  
 })
+
+
 
 
 wserver.use(errorHandler.errorHandler)
