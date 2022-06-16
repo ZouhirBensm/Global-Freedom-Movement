@@ -33,12 +33,12 @@ const errorHandler = require('./error-management/errorsMiddleware')
 
 
 
-wserver.use(redirectHTTPS)
+// wserver.use(redirectHTTPS)
 
 
 wserver.get('/', objectifyEnvVars, (req,res)=>{
   // console.log("DO WE HAVE the F**in data", res.locals.environmentVars)
-  
+
   const { social_media } = require('./social.data')
   res.render('home', {
     social_media, 
