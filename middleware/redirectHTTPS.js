@@ -4,7 +4,7 @@ const { NotGetWithHTTP } = require('../error-management/custom-errors')
 
 module.exports = (req,res,next)=>{
   // console.log("what is the Fuckin protocol: ", req.header('x-forwarded-proto'))
-  
+  console.log("WHAT IS THE FUCKIN ENV: ", ENV.environment)
   if(ENV.environment === 'staging'){
     console.log("A")
     if(req.method==="GET"){
