@@ -42,7 +42,8 @@ module.exports = async (req,res,next)=>{
 
   res.locals.insertResultRessolvedVal = insertResultRessolvedVal
   
-  next()
+  console.log("__before responding json:__\n")
+  return next()
 
 
 
