@@ -22,7 +22,6 @@ module.exports = (req,res,next)=>{
         return next()
       }
     } else {
-      console.log(ENV.environment)
       console.log("E")
       if (req.header('x-forwarded-proto') !== 'https') {
         // E.g. POST with HTTP

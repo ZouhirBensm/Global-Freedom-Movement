@@ -31,9 +31,9 @@ const redirectHTTPS = require('./middleware/redirectHTTPS')
 const errorHandler = require('./error-management/errorsMiddleware')
 
 
+let i = 0
 
 wserver.use((req,res,next)=>{
-  let i = 0
   if (i === 0 ) console.log("HEADERS", req.headers)
   i = 1
 
@@ -55,7 +55,6 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 
 wserver.post('/backlog_register', saveToHostgator, (req,res) => {
   // console.log("in server.js: ", res.locals.insertResultRessolvedVal)
-  console.log("C: we might be executing this before savetoHostgator??")
 
   res.json({SRV: {
     type: "Success",
