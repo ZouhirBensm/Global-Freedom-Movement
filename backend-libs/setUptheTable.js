@@ -44,7 +44,7 @@ class SQLQuery {
         `, function (error, results) {
           if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
           console.log('found: ', results)
-          results = results?.map((element) => {return element['Tables_in_global-partisans']})
+          results = results?.map((element) => {return element[`Tables_in_${process.env.DB_NAME}`]})
           console.log('found: ', results)
           const present = results?.includes(tableName) 
           return resolve(present)
