@@ -19,7 +19,7 @@ module.exports = (req,res,next)=>{
       else {
         // E.g. GET with HTTPS
         console.log("D")
-        next()
+        return next()
       }
     } else {
       console.log(ENV.environment)
@@ -27,15 +27,15 @@ module.exports = (req,res,next)=>{
       if (req.header('x-forwarded-proto') !== 'https') {
         // E.g. POST with HTTP
         console.log("F")
-        next(new NotGetWithHTTP())
+        return next(new NotGetWithHTTP())
       }
       else {
         // E.g. POST with HTTPS
         console.log("G")
-        next()
+        return next()
       }
     }
   }
   console.log("H")
-  next()
+  return next()
 }
