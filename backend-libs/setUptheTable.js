@@ -24,7 +24,7 @@ class SQLQuery {
             port: process.env.DB_PORT
           });
           //deploy
-          connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
+          connection.connect((err) => {if (err) {return reject(err);} console.log("WHAT CONNECTION? ", connection.config); return resolve("mySQL connection established");});
         } 
         if(value==="endconnect"){
           connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
@@ -36,13 +36,14 @@ class SQLQuery {
 
 
   checkIfpresent(tableName = this.tableName) {
+    console.log("SAME CONNECTION? ", connection.config)
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
         connection.query(`
         SHOW tables
         `, function (error, results) {
           if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
-          console.log('found: ', results[0]['Tables_in_global-partisans'])
+          console.log('found: ', results)
           results = results?.map((element) => {return element['Tables_in_global-partisans']})
           console.log('found: ', results)
           const present = results?.includes(tableName) 
