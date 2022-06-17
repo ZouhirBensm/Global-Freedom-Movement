@@ -42,7 +42,7 @@ class SQLQuery {
         SHOW tables
         `, function (error, results) {
           if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
-          // console.log('found: ', results[0]['Tables_in_global-partisans'])
+          console.log('found: ', results[0]['Tables_in_global-partisans'])
           results = results?.map((element) => {return element['Tables_in_global-partisans']})
           console.log('found: ', results)
           const present = results?.includes(tableName) 

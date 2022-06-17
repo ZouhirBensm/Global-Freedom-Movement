@@ -42,7 +42,7 @@ module.exports = async (req,res,next)=>{
 
   res.locals.insertResultRessolvedVal = insertResultRessolvedVal
   
-  return next()
+  next()
 
 
 
