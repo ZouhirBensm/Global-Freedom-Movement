@@ -29,12 +29,16 @@ const postToNGINXandTrySave = require('./middleware/postToNGINXandTrySave')
 const saveToHostgator = require('./middleware/saveToHostgator')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
 const errorHandler = require('./error-management/errorsMiddleware')
+const encryptData = require('./middleware/encryptData')
+
 
 
 let i = 0
 
 wserver.use((req,res,next)=>{
-  if (i === 0 ) console.log("HEADERS", req.headers)
+  if (i === 0 ) {
+    console.log("HEADERS", req.headers)
+  }
   i = 1
 
   next()
@@ -53,14 +57,22 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 })
 
 
-wserver.post('/backlog_register', saveToHostgator, (req,res) => {
-  // console.log("in server.js: ", res.locals.insertResultRessolvedVal)
+// wserver.post('/backlog_register', saveToHostgator, (req,res) => {
+//   // console.log("in server.js: ", res.locals.insertResultRessolvedVal)
 
+//   res.json({SRV: {
+//     type: "Success",
+//     message: ["You have successfully submited your form! Thank you."]
+//   }})
+
+// })
+
+wserver.post('/store', encryptData, saveToHostgator, (req,res) => {
+  
   res.json({SRV: {
     type: "Success",
     message: ["You have successfully submited your form! Thank you."]
   }})
-
 })
 
 

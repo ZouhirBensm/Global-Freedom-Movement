@@ -11,7 +11,7 @@ async function sendEntryToExpressWebServer(entryobject) {
   let response 
   // 2
   try {
-    response = await fetch(`${endpoint}/backlog_register`, {
+    response = await fetch(`${endpoint}/store`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

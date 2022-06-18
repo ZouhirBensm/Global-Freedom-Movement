@@ -1,2 +1,6 @@
 /node_modules
+/config/keyGenerator.js
+/config/private.pem
+/config/keyGenerator.js
 .env
+decryptData.js

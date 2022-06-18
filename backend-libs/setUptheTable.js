@@ -24,7 +24,7 @@ class SQLQuery {
             port: process.env.DB_PORT
           });
           //deploy
-          connection.connect((err) => {if (err) {return reject(err);} console.log("WHAT CONNECTION? ", connection.config); return resolve("mySQL connection established");});
+          connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
         } 
         if(value==="endconnect"){
           connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
@@ -36,16 +36,16 @@ class SQLQuery {
 
 
   checkIfpresent(tableName = this.tableName) {
-    console.log("SAME CONNECTION? ", connection.config)
+    // console.log("SAME CONNECTION? ", connection.config)
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
         connection.query(`
         SHOW tables
         `, function (error, results) {
           if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
-          console.log('found: ', results)
+          // console.log('found: ', results)
           results = results?.map((element) => {return element[`Tables_in_${process.env.DB_NAME}`]})
-          console.log('found: ', results)
+          // console.log('found: ', results)
           const present = results?.includes(tableName) 
           return resolve(present)
         });
@@ -54,29 +54,33 @@ class SQLQuery {
   }
 
 
-  createTable(){
-    connection.query(`
-    CREATE TABLE ${this.tableName} (
-      id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
-      email VARCHAR(128),
-      phone_number VARCHAR(16),
-      is_brn_phone BIT(1),
-      is_subscriber_newsletter BIT(1)
-    ) ENGINE InnoDB
-    `, function (error, results) {
-      if (error) return new CurrentlySavingNotWorkingFromServer();
-      console.log('Created table: ', results);
+  createTable(tableName = this.tableName){
+    console.log("B")
+    return new Promise(function(resolve, reject) {
+      //Code for resolving the promise
+      connection.query(`
+      CREATE TABLE ${tableName} (
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
+        email VARCHAR(512),
+        phone_number VARCHAR(512),
+        is_brn_phone BIT(1),
+        is_subscriber_newsletter BIT(1)
+      ) ENGINE InnoDB
+      `, function (error, results) {
+        if (error) return reject(error);
+        console.log('Created table: ', results);
+        return resolve(results)
+      });
     });
   }
 
-  
   insertEntry(email, phone_number, is_subscriber_newsletter, is_brn_phone, tableName = this.tableName){
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       connection.query(`
       INSERT INTO ${tableName}(email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES('${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
       `, function (error, results) {
-        if (error) {return reject(new CurrentlySavingNotWorkingFromServer());}
+        if (error) {return reject(error);}
         return resolve(results)
       });
     });

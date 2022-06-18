@@ -1,6 +1,7 @@
 const {SQLQuery} = require('../backend-libs/setUptheTable');
 
 
+
 module.exports = async (req,res,next)=>{
   console.log("\n___Saving to Hostgator receiving:___\n", req.body)
 
@@ -25,7 +26,9 @@ module.exports = async (req,res,next)=>{
   console.log("isPresentTableResolvedVal: ", isPresentTableResolvedVal)
   
   if (!isPresentTableResolvedVal) {
-    try {sqlQuery.createTable()} catch(cerr) {return next(cerr)}
+    console.log("A")
+    try { isTableCreatedResolvedVal = await sqlQuery.createTable() } catch(err) {console.log("\nPromise returned in sqlQuery.createTable() rejected with a error\n"); return next(err)}
+    console.log("isTableCreatedResolvedVal: ", isTableCreatedResolvedVal)
   }
   
   // *INSERT THE ENTRY*

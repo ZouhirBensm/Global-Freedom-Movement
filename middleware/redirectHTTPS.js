@@ -4,7 +4,7 @@ const { NotGetWithHTTP } = require('../error-management/custom-errors')
 
 module.exports = (req,res,next)=>{
   // console.log("what is the Fuckin protocol: ", req.header('x-forwarded-proto'))
-  console.log("WHAT IS THE FUCKIN ENV: ", ENV.environment)
+  // console.log("WHAT IS THE FUCKIN ENV: ", ENV.environment)
   if(ENV.environment === 'staging'){
     console.log("A")
     if(req.method==="GET"){
@@ -13,7 +13,7 @@ module.exports = (req,res,next)=>{
       if (req.header('x-forwarded-proto') !== 'https') {
         // E.g. GET with HTTP
         console.log("C")
-        console.log(`https://${req.header('host')}${req.url}`)
+        // console.log(`https://${req.header('host')}${req.url}`)
         res.status(httpStatus.StatusCodes.MOVED_TEMPORARILY).redirect(`https://${req.header('host')}${req.url}`)
       }
       else {
