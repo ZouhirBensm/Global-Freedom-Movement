@@ -3,7 +3,6 @@ const { ENV } = require('../config/config')
 const { CurrentlySavingNotWorkingFromServer } = require('../error-management/custom-errors')
 mysql = require('mysql')
 
-
 var connection
 
 class SQLQuery {
@@ -15,25 +14,25 @@ class SQLQuery {
   static cable(value){
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
-        if(value==="connect"){
-          connection = mysql.createConnection({
-            host     : process.env.DB_HOST,
-            user     : process.env.DB_USER,
-            password : process.env.DB_USER_PASSWORD,
-            database : process.env.DB_NAME,
-            port: process.env.DB_PORT
-          });
-          //deploy
-          connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
-        } 
-        if(value==="endconnect"){
-          connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
-        }
+      if(value==="connect"){
+        connection = mysql.createConnection({
+          host     : process.env.DB_HOST,
+          user     : process.env.DB_USER,
+          password : process.env.DB_USER_PASSWORD,
+          database : process.env.DB_NAME,
+          port: process.env.DB_PORT
+        });
+        //deploy
+        connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
+      } 
+      if(value==="endconnect"){
+        connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
+      }
     });
+
     
-
+    
   }
-
 
   checkIfpresent(tableName = this.tableName) {
     // console.log("SAME CONNECTION? ", connection.config)
