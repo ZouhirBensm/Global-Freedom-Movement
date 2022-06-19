@@ -1,5 +1,6 @@
 <div>
   <h2>Register to our Backlog of anti-NWO patisans</h2>
+  <p id="popup"><%if(locals.popup){%><%=popup%><%}%></p>
   <form id="form">
     <div>
       <label for="idemail">E-mail</label>
@@ -15,7 +16,7 @@
       <span class="format email">Format: characters@characters.characters</span>
     </div>
     <div>
-      <label for="idphone"><a href="info/phone">Phone number</a></label>
+      <!-- <label for="idphone"><a href="info/phone">Phone number</a></label>
       <input 
         type="tel" 
         name="phone" 
@@ -25,8 +26,8 @@
         placeholder="example: 123-123-1234"
         value="(888) 777-6666"
         required
-      >
-      <div class="format phone">
+      > -->
+      <!-- <div class="format phone">
         Formats
         <ul>
           <li>1231231234</li>
@@ -39,7 +40,19 @@
           <li>(123) 123-1234</li>
           <li>123 123-1234</li>
         </ul>
-      </div>
+      </div> -->
+
+
+      <label for="idphone2"><a href="info/phone">Phone number</a></label>
+      <input 
+        type="tel" 
+        name="phone2" 
+        id="idphone2"
+        pattern="[0-9]{10}" 
+        placeholder="example: 1231231234"
+        value="8887776666"
+        required
+      >
     </div>
     <div class="checkboxes">
       <div>
@@ -59,6 +72,7 @@
     </div>
     <button type="submit">Send</button>
   </form>
+  <script src="js/format-phone-live.js"></script>
   <script src="js/form-manip.js"></script>
   <script src="js/object-send.js"></script>
 </div>

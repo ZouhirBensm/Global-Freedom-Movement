@@ -2,7 +2,7 @@
 console.log("in file:1")
 
 async function sendEntryToExpressWebServer(entryobject) {
-  // console.log(entryobject)
+  console.log(entryobject)
   // console.log(environment, port, domain)
 
 
@@ -25,11 +25,18 @@ async function sendEntryToExpressWebServer(entryobject) {
   // console.log(response)
   let json_response
   try {json_response = await response.json()} catch(e) {console.error(e)}
+  console.log("server response: ", json_response)
 
-  if(response.ok) {
-    console.log("server response: ", json_response)
-    // if(json_response.didSave === true) {window.location.href = `${endpoint}?popup=Data has been saved on the server`;} else if (json_response.didSave === false) {console.log("fetch() and .json() succeeded and Data has not been saved on the server")} else {console.log("fetch() and .json() succeeded but json_response received is missing the didSave property")}
+  if(response && json_response){
+    if(response.ok) {
+      window.location.href = `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`;
+      // console.log("Go to: ", `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`)
+    } else {
+      window.location.href = `${endpoint}?popup=Something went wrong, please try later or signal problem#middle-box2`;
+      console.log(response, json_response, `Response status from submit: ${response.status}, ${response.statusText}#middle-box2`)
+    }
   } else {
-    console.log("Should be the custom error: ", json_response)
+    window.location.href = `${endpoint}?popup=Something went wrong, please try later or signal problem#middle-box2`;
+    console.log(`Did not receive a response`)
   }
 }
