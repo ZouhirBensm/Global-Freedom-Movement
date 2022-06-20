@@ -2,7 +2,6 @@ const { publicEncrypt, privateDecrypt } = require("crypto")
 const fs = require("fs")
 
 const publicKey = fs.readFileSync('./config/public.pem', 'utf8');
-const privateKey = fs.readFileSync('./config/private.pem', 'utf8');
 // const {privateKey, publicKey} = require("../config/keyGenerator")
 
 module.exports = (req,res,next)=>{

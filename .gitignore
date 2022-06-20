@@ -3,4 +3,3 @@
 /config/private.pem
 /config/keyGenerator.js
 .env
-backend-libs/decryptData.js

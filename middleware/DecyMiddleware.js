@@ -1,8 +1,7 @@
-const { ENV } = require('../config/config')
+const { ENV, privateKey } = require('../config/config')
 const {SQLQuery} = require('../backend-libs/setUptheTable');
 const { privateDecrypt, constants } = require("crypto")
-const fs = require("fs")
-const privateKey = fs.readFileSync('./config/private.pem', 'utf8');
+
 
 
 module.exports = async (req,res,next) => {
