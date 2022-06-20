@@ -28,6 +28,8 @@ const objectifyEnvVars = require('./middleware/objectifyEnvironmentVars')
 const postToNGINXandTrySave = require('./middleware/postToNGINXandTrySave')
 const saveToHostgator = require('./middleware/saveToHostgator')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
+const ToDecyBlocker = require('./middleware/ToDecyBlocker')
+const DecyMiddleware = require('./middleware/DecyMiddleware')
 const errorHandler = require('./error-management/errorsMiddleware')
 const encryptData = require('./middleware/encryptData')
 
@@ -56,6 +58,20 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
     environmentVars: res.locals.environmentVars,
     [req.query.popup ? "popup": null]: req.query.popup,
   })
+})
+
+
+wserver.get('/op' , objectifyEnvVars, (req,res)=>{
+  res.render('op', {
+    environmentVars: res.locals.environmentVars,
+  })
+})
+
+
+
+
+wserver.get('/localhost-dec', ToDecyBlocker, DecyMiddleware, (req,res)=>{
+  res.json({})
 })
 
 

@@ -27,7 +27,8 @@ module.exports = async (req,res,next)=>{
   
   if (!isPresentTableResolvedVal) {
     console.log("A")
-    try { isTableCreatedResolvedVal = await sqlQuery.createTable() } catch(err) {console.log("\nPromise returned in sqlQuery.createTable() rejected with a error\n"); return next(err)}
+    // *CREATE TABLE*
+    try { isTableCreatedResolvedVal = await sqlQuery.createTable(512, 'INT UNSIGNED NOT NULL AUTO_INCREMENT KEY') } catch(err) {console.log("\nPromise returned in sqlQuery.createTable() rejected with a error\n"); return next(err)}
     console.log("isTableCreatedResolvedVal: ", isTableCreatedResolvedVal)
   }
   

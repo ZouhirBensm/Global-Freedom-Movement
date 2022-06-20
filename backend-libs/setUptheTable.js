@@ -53,15 +53,15 @@ class SQLQuery {
   }
 
 
-  createTable(tableName = this.tableName){
+  createTable(datalength, idtype, tableName = this.tableName){
     console.log("B")
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       connection.query(`
       CREATE TABLE ${tableName} (
-        id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
-        email VARCHAR(512),
-        phone_number VARCHAR(512),
+        id ${idtype},
+        email VARCHAR(${datalength}),
+        phone_number VARCHAR(${datalength}),
         is_brn_phone BIT(1),
         is_subscriber_newsletter BIT(1)
       ) ENGINE InnoDB
@@ -73,13 +73,42 @@ class SQLQuery {
     });
   }
 
-  insertEntry(email, phone_number, is_subscriber_newsletter, is_brn_phone, tableName = this.tableName){
+  insertEntry(email, phone_number, is_subscriber_newsletter, is_brn_phone, id = null, tableName = this.tableName){
+    console.log(
+    `
+      INSERT INTO ${tableName}(${id?'id, ': ''}email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES(${id?`'${id}',`:''}'${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
+      `)
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       connection.query(`
-      INSERT INTO ${tableName}(email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES('${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
+      INSERT INTO ${tableName}(${id?'id, ': ''}email, phone_number, is_subscriber_newsletter, is_brn_phone) VALUES(${id?`'${id}',`:''}'${email}','${phone_number}',${is_subscriber_newsletter},${is_brn_phone})
       `, function (error, results) {
         if (error) {return reject(error);}
+        return resolve(results)
+      });
+    });
+  }
+
+  retrieveTable(tableName = this.tableName){
+    return new Promise(function(resolve, reject) {
+      //Code for resolving the promise
+      connection.query(`
+      SELECT * FROM ${tableName}
+      `, function (error, results) {
+        if (error) {return reject(error);}
+        return resolve(results)
+      });
+    });
+  }
+
+  checkForEntryWithID(id, tableName = this.tableName){
+    return new Promise(function(resolve, reject) {
+      //Code for resolving the promise
+      connection.query(`
+      SELECT CASE WHEN EXISTS (SELECT id FROM ${tableName} WHERE id = ${id}) THEN 1 ELSE 0 END
+      `, function (error, results) {
+        if (error) {return reject(error);}
+        console.log("____exists?", results)
         return resolve(results)
       });
     });

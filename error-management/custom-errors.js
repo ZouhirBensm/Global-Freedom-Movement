@@ -32,8 +32,19 @@ class CurrentlySavingNotWorkingFromServer extends CustomError {
   }
 }
 
+class DecyOpDenied extends CustomError {
+  constructor(){
+    super()
+    this.statusCode = httpStatus.StatusCodes.FORBIDDEN
+    this.type = this.constructor.name
+    this.message = ['You do not have the permissions to execute this request']
+  }
+}
+
+
 
 module.exports = {
   NotGetWithHTTP,
-  CurrentlySavingNotWorkingFromServer
+  CurrentlySavingNotWorkingFromServer,
+  DecyOpDenied
 }

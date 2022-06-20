@@ -28,6 +28,15 @@ const errorHandler = (err, req ,res, next) => {
         }
       })
       break;
+    case 'DecyOpDenied':
+      mylog(err)
+      res.status(err.statusCode).json({
+        SRV: {
+          type: err.type,
+          message: err.message,
+        }
+      })
+      break;
 
   
     default:
