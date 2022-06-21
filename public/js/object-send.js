@@ -29,6 +29,9 @@ async function sendEntryToExpressWebServer(entryobject) {
 
   if(response && json_response){
     if(response.ok) {
+      // Temporary solution
+      document.getElementById("popup").classList.add('green');
+      // document.getElementById("popup").classList.remove('MyClass');
       window.location.href = `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`;
       // console.log("Go to: ", `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`)
     } else {

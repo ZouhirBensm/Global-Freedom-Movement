@@ -5,3 +5,12 @@ input:invalid {
 .format {
   font-size: small;
 }
+
+/* Temporary solution */
+p#popup.green {
+  color: green; 
+}
+
+p#popup {
+  color: red; 
+}
