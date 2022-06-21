@@ -44,10 +44,15 @@ module.exports = async (req,res) => {
     })
   } else {
     // console.log("\n\n", privateKey, typeof privateKey, "\n\n________________________\n\n", publicDecrypt)
+    // *RETRIEVING THE ENTIRE TABLE*
     try { entireTableResolvedVal = await sqlQuery.retrieveTable() } catch(err) {console.log("\nPromise returned in sqlQuery.retrieveTable() rejected with a error\n"); return next(err)}
     
     console.log("entireTableResolvedVal: ", entireTableResolvedVal)
     
+
+    // IF /hostgator-to-homecosmos-dec DDIISSCCOONNEECCTT
+    // CCOONNEECCTT TO LOCAL
+
     // Create new instance
     let sqlQuerySubscribersDecy = new SQLQuery(ENV, "subscribers_decrypted")
     
