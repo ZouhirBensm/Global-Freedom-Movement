@@ -10,20 +10,20 @@ class SQLQuery {
     this.ENVvariablesOBJ = ENVvariablesOBJ
     this.tableName = tableName
   }
-  // env = 0, default values, env = 1, Secondary values, see .env file to understand
+  // env = 0, default values, env = 1, Secondary values, see .env file to understand, env = 2, Terciary values, see .env file to understand
   static cable(value, env = 0){
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       if(value==="connect"){
         connection = mysql.createConnection({
-          host     : !env? process.env.DB_HOST : process.env.DB_HOST2,
-          user     : !env? process.env.DB_USER : process.env.DB_USER2,
-          password : !env? process.env.DB_USER_PASSWORD : process.env.DB_USER_PASSWORD2,
-          database : !env? process.env.DB_NAME : process.env.DB_NAME2,
-          port: !env? process.env.DB_PORT : process.env.DB_PORT2
+          host     : env === 0? process.env.DB_HOST: env === 1? process.env.DB_HOST2: env === 2? process.env.DB_HOST3: undefined,
+          user     : env === 0? process.env.DB_USER: env === 1? process.env.DB_USER2: env === 2? process.env.DB_USER3: undefined,
+          password : env === 0? process.env.DB_USER_PASSWORD: env === 1? process.env.DB_USER_PASSWORD2: env === 2? process.env.DB_USER_PASSWORD3: undefined,
+          database : env === 0? process.env.DB_NAME: env === 1? process.env.DB_NAME2: env === 2? process.env.DB_NAME3: undefined,
+          port: env === 0? process.env.DB_PORT: env === 1? process.env.DB_PORT2: env === 2? process.env.DB_PORT3: undefined,
         });
         //deploy
-        connection.connect((err) => {if (err) {return reject(err);} return resolve(`MySQL connection established.\nYou have connected to;\nHost:${!env? process.env.DB_HOST : process.env.DB_HOST2}\nDatabase: ${!env? process.env.DB_NAME : process.env.DB_NAME2}\n`);});
+        connection.connect((err) => {if (err) {return reject(err);} return resolve(`MySQL connection established.\nYou have connected to;\nHost:${connection.config.host}\nDatabase: ${connection.config.database}\n`);});
       } 
       if(value==="endconnect"){
         connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});

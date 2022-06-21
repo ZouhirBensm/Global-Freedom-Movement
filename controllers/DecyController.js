@@ -50,8 +50,18 @@ module.exports = async (req,res) => {
     console.log("entireTableResolvedVal: ", entireTableResolvedVal)
     
 
-    // IF /hostgator-to-homecosmos-dec DDIISSCCOONNEECCTT
-    // CCOONNEECCTT TO LOCAL
+    // IF /hostgator-to-homecosmos-dec DDIISSCCOONNEECCTT/CCOONNEECCTT
+    if(req.originalUrl === "/hostgator-to-homecosmos-dec"){
+      // *DISCONNECT*
+      try { connectResolvedVal = await SQLQuery.cable("endconnect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+
+      console.log(connectResolvedVal)
+      // CCOONNEECCTT TO LOCAL
+      try { connectResolvedVal = await SQLQuery.cable("connect", 2) } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+
+      console.log("if resolved1: ", connectResolvedVal)
+
+    }
 
     // Create new instance
     let sqlQuerySubscribersDecy = new SQLQuery(ENV, "subscribers_decrypted")
