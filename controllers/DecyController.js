@@ -4,7 +4,7 @@ const { privateDecrypt, constants } = require("crypto")
 
 
 
-module.exports = async (req,res) => {
+module.exports = async (req,res,next) => {
 
   
   let connectResolvedVal, isPresent_subscribers, isPresent_subscribers_decrypted, insertResultRessolvedVal, disconnectResolvedVal, entireTableResolvedVal
@@ -26,7 +26,7 @@ module.exports = async (req,res) => {
   
 
   
-  let sqlQuery = new SQLQuery(ENV, "subscribers", 1)
+  let sqlQuery = new SQLQuery(ENV, "subscribers")
   
   // console.log("BETWEEN")
   // *CHECK TABLE PRESENCE*
@@ -36,6 +36,10 @@ module.exports = async (req,res) => {
   console.log("isPresent_subscribers: ", isPresent_subscribers)
   
   if (!isPresent_subscribers) {
+    // *DISCONNECT*
+    try { connectResolvedVal = await SQLQuery.cable("endconnect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+
+    console.log(connectResolvedVal)
     res.json({
       SRV: {
         type: "Success",
@@ -143,7 +147,7 @@ module.exports = async (req,res) => {
     res.json({
       SRV: {
         type: "Success",
-        message: ["Done updating decryted database"]
+        message: [`Done updating decryted database`]
       }
     })
   } // end of else for if encrypted DB present
