@@ -4,25 +4,36 @@ const { privateDecrypt, constants } = require("crypto")
 
 
 
-module.exports = async (req,res,next) => {
+module.exports = async (req,res) => {
 
   
   let connectResolvedVal, isPresent_subscribers, isPresent_subscribers_decrypted, insertResultRessolvedVal, disconnectResolvedVal, entireTableResolvedVal
   
-  // CONNECT
-  try { connectResolvedVal = await SQLQuery.cable("connect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+  console.log(req.originalUrl)
+  if(req.originalUrl === "/hostgator-to-homecosmos-dec") {
+    // CONNECT
+    console.log("ici")
+    try { connectResolvedVal = await SQLQuery.cable("connect", 1) } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+  } else if (req.originalUrl === '/localhost-dec') {
+    // CONNECT
+    try { connectResolvedVal = await SQLQuery.cable("connect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+  } else {
+    console.error('Express GET request route is not expecting to use the DecyController.js Middleware')
+  }
   
   
-  // console.log("if resolved1: ", connectResolvedVal)
+  console.log("if resolved1: ", connectResolvedVal)
   
-  let sqlQuery = new SQLQuery(ENV, "subscribers")
+
+  
+  let sqlQuery = new SQLQuery(ENV, "subscribers", 1)
   
   // console.log("BETWEEN")
   // *CHECK TABLE PRESENCE*
   try { isPresent_subscribers = await sqlQuery.checkIfpresent() } catch(err) {console.log("\nPromise returned in sqlQuery.checkIfpresent() rejected with a error\n"); return next(err)}
   
   
-  // console.log("isPresent_subscribers: ", isPresent_subscribers)
+  console.log("isPresent_subscribers: ", isPresent_subscribers)
   
   if (!isPresent_subscribers) {
     res.json({
@@ -105,9 +116,15 @@ module.exports = async (req,res,next) => {
         try { insertResultRessolvedVal = await sqlQuerySubscribersDecy.insertEntry(...Object.values(body)) } catch(err) {console.log("\nPromise returned in sqlQuery.insertEntry() rejected with a error\n"); return next(err)}
   
         //
-
-      } // else already present
+        
+      } // else already present in decrypted DB based on ID
     } // for end loop all encrpted DB
+
+    // *DISCONNECT*
+    try { connectResolvedVal = await SQLQuery.cable("endconnect") } catch(err) {console.log("\nPromise returned in SQLQuery.cable('connect') rejected with a error\n"); return next(err)}
+
+    console.log(connectResolvedVal)
+
     res.json({
       SRV: {
         type: "Success",

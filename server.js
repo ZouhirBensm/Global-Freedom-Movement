@@ -29,9 +29,13 @@ const postToNGINXandTrySave = require('./middleware/postToNGINXandTrySave')
 const saveToHostgator = require('./middleware/saveToHostgator')
 const redirectHTTPS = require('./middleware/redirectHTTPS')
 const ToDecyBlocker = require('./middleware/ToDecyBlocker')
-const DecyMiddleware = require('./middleware/DecyMiddleware')
 const errorHandler = require('./error-management/errorsMiddleware')
 const encryptData = require('./middleware/encryptData')
+
+
+
+
+const DecyController = require("./controllers/DecyController")
 
 
 
@@ -68,12 +72,11 @@ wserver.get('/op' , objectifyEnvVars, (req,res)=>{
 })
 
 
+wserver.get('/localhost-dec', ToDecyBlocker, DecyController)
 
 
-wserver.get('/localhost-dec', ToDecyBlocker, DecyMiddleware, (req,res)=>{
-  res.json({})
-})
 
+wserver.get('/hostgator-to-homecosmos-dec', ToDecyBlocker,  DecyController)
 
 // wserver.post('/backlog_register', saveToHostgator, (req,res) => {
 //   // console.log("in server.js: ", res.locals.insertResultRessolvedVal)

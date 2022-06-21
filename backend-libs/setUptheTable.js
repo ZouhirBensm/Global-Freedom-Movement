@@ -10,28 +10,25 @@ class SQLQuery {
     this.ENVvariablesOBJ = ENVvariablesOBJ
     this.tableName = tableName
   }
-  
-  static cable(value){
+  // env = 0, default values, env = 1, Secondary values, see .env file to understand
+  static cable(value, env = 0){
     return new Promise(function(resolve, reject) {
       //Code for resolving the promise
       if(value==="connect"){
         connection = mysql.createConnection({
-          host     : process.env.DB_HOST,
-          user     : process.env.DB_USER,
-          password : process.env.DB_USER_PASSWORD,
-          database : process.env.DB_NAME,
-          port: process.env.DB_PORT
+          host     : !env? process.env.DB_HOST : process.env.DB_HOST2,
+          user     : !env? process.env.DB_USER : process.env.DB_USER2,
+          password : !env? process.env.DB_USER_PASSWORD : process.env.DB_USER_PASSWORD2,
+          database : !env? process.env.DB_NAME : process.env.DB_NAME2,
+          port: !env? process.env.DB_PORT : process.env.DB_PORT2
         });
         //deploy
-        connection.connect((err) => {if (err) {return reject(err);} return resolve("mySQL connection established");});
+        connection.connect((err) => {if (err) {return reject(err);} return resolve(`MySQL connection established.\nYou have connected to;\nHost:${!env? process.env.DB_HOST : process.env.DB_HOST2}\nDatabase: ${!env? process.env.DB_NAME : process.env.DB_NAME2}\n`);});
       } 
       if(value==="endconnect"){
         connection.end((err) => {if (err) {return reject(new CurrentlySavingNotWorkingFromServer());} return resolve("mySQL connection closing");});
       }
     });
-
-    
-    
   }
 
   checkIfpresent(tableName = this.tableName) {
@@ -42,9 +39,10 @@ class SQLQuery {
         SHOW tables
         `, function (error, results) {
           if (error) {return reject(new CurrentlySavingNotWorkingFromServer())};
-          // console.log('found: ', results)
-          results = results?.map((element) => {return element[`Tables_in_${process.env.DB_NAME}`]})
-          // console.log('found: ', results)
+          console.log('found: ', results)
+          // console.log('template: ', connection.config.database, "  vs  ", process.env.DB_NAME)
+          results = results?.map((element) => {return element[`Tables_in_${connection.config.database}`]})
+          console.log('found: ', results)
           const present = results?.includes(tableName) 
           return resolve(present)
         });
