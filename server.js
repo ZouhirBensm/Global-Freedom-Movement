@@ -54,13 +54,10 @@ wserver.use(redirectHTTPS)
 
 wserver.get('/', objectifyEnvVars, (req,res)=>{
   // console.log("DO WE HAVE the F**in data", res.locals.environmentVars)
-
-  console.log("Query parameter", req.query.popup)
   const { social_media } = require('./social.data')
   res.render('home', {
     social_media, 
-    environmentVars: res.locals.environmentVars,
-    [req.query.popup ? "popup": null]: req.query.popup,
+    environmentVars: res.locals.environmentVars
   })
 })
 

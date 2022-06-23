@@ -2,6 +2,7 @@
 console.log("in file:1")
 
 async function sendEntryToExpressWebServer(entryobject) {
+  const popup = document.getElementById("popup");
   console.log(entryobject)
   // console.log(environment, port, domain)
 
@@ -9,7 +10,6 @@ async function sendEntryToExpressWebServer(entryobject) {
 
   console.log("endpoint: ", endpoint)
   let response 
-  // 2
   try {
     response = await fetch(`${endpoint}/store`, {
       method: 'POST',
@@ -22,23 +22,22 @@ async function sendEntryToExpressWebServer(entryobject) {
   } catch (e) {
     console.error(`Catched Error: ${e}`)
   }
-  // console.log(response)
   let json_response
   try {json_response = await response.json()} catch(e) {console.error(e)}
   console.log("server response: ", json_response)
 
   if(response && json_response){
     if(response.ok) {
-      // Temporary solution
-      // document.getElementById("popup").style.color = 'green'
-      window.location.href = `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`;
-      // console.log("Go to: ", `${endpoint}?popup=${json_response.SRV.message[0]}#middle-box2`)
+      popup.innerHTML = json_response.SRV.message[0]
+      popup.style.color = "green";
     } else {
-      window.location.href = `${endpoint}?popup=Something went wrong, please try later or signal problem#middle-box2`;
+      popup.innerHTML = `Something went wrong, please try later or signal problem <a href="https://webdevelopercanada.website/Zouhir" target="_blank">to website developer</a>`
+      popup.style.color = "red";
       console.log(response, json_response, `Response status from submit: ${response.status}, ${response.statusText}#middle-box2`)
     }
   } else {
-    window.location.href = `${endpoint}?popup=Something went wrong, please try later or signal problem#middle-box2`;
+    popup.innerHTML = `Something went wrong, please try later or signal problem <a href="https://webdevelopercanada.website/Zouhir" target="_blank">to  website developer</a>`
+    popup.style.color = "red";
     console.log(`Did not receive a response`)
   }
 }
