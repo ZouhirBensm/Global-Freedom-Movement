@@ -31,6 +31,7 @@ module.exports = (req,res,next)=>{
 
   console.log('___req.body before getting saved in the DB___\n', req.body)
 
+  return next()
 
   // console.log("\n___Decrypting this Data:___\n", encryptedDataEmail, encryptedDataPhone)
   // console.log("\n\n", privateKey, typeof privateKey, "\n\n")
@@ -53,5 +54,4 @@ module.exports = (req,res,next)=>{
   // console.log(decryptedDataEmail.toString("utf-8"), "\n\n")
   // console.log(decryptedDataPhone.toString("utf-8"), "\n\n")
 
-  return next()
 }

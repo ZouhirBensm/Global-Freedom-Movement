@@ -69,11 +69,6 @@ wserver.get('/op' , objectifyEnvVars, (req,res)=>{
 })
 
 
-wserver.get('/localhost-dec', ToDecyBlocker, DecyController)
-
-
-
-wserver.get('/hostgator-to-homecosmos-dec', ToDecyBlocker,  DecyController)
 
 // wserver.post('/backlog_register', saveToHostgator, (req,res) => {
 //   // console.log("in server.js: ", res.locals.insertResultRessolvedVal)
@@ -85,13 +80,7 @@ wserver.get('/hostgator-to-homecosmos-dec', ToDecyBlocker,  DecyController)
 
 // })
 
-wserver.post('/store', encryptData, saveToHostgator, (req,res) => {
-  
-  res.json({SRV: {
-    type: "Success",
-    message: ["You have successfully submited your form! Thank you."]
-  }})
-})
+
 
 
 wserver.post('/test', (req,res) => {
@@ -109,4 +98,24 @@ wserver.use(errorHandler.errorHandler)
 
 wserver.listen(ENV.port, () => {
   console.log(`Global-Freedom-Movement web server is running on port ${wserver.get("port")}`)
+})
+
+
+
+
+
+wserver.get('/localhost-dec', ToDecyBlocker, DecyController)
+
+
+
+wserver.get('/hostgator-to-homecosmos-dec', ToDecyBlocker,  DecyController)
+
+
+
+wserver.post('/store', encryptData, saveToHostgator, (req,res) => {
+  
+  res.json({SRV: {
+    type: "Success",
+    message: ["You have successfully submited your form! Thank you."]
+  }})
 })

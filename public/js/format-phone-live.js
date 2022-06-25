@@ -1,4 +1,6 @@
 
+const popup = document.getElementById("popup");
+popup.style.display = "none";
 
 console.log("format phone live")
 

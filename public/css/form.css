@@ -1,8 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+* {
+  outline: rgba(255, 0, 0, 0.38);
+}
+
 /* input:invalid {
   border: red solid 3px;
 } */
 
 .format {
   font-size: small;
+}
+
+
+.master-form-container{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -40vh;
+  font-family: 'BenchNine', sans-serif;
+  /* align-items: stretch; */
+  
+}
+
+.master-form-container > * {
+  width: 95%;
+  margin: 0 auto;
+}
+
+h2.form-title {
+  /* margin: 0; */
+  font-family: 'Nunito', sans-serif;
+}
+
+div.input-elements > div {
+  display: flex;
+  margin: 5px 0;
+  /* position: relative; */
+}
+
+div.input-elements > div > *{
+  /* border: 1px solid red; */
+  width: 50%;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: 50%;
+}
+
+div.input-elements > div label[for="idphone2"] {
+  white-space: nowrap;
+}
+
+div.input-elements > div > label[for="idphone2"] > a {
+  overflow: scroll;
+}
+
+a {
+  text-decoration: none;
+  
+}
+
+div.input-elements > div > input {
+  max-width: 50%;
+  /* position: absolute;
+  top: 5%;
+  bottom: 5%;
+  right: 0;
+  left: 0; */
+}
+
+label.idlabelemail {
+  text-decoration: none;
+}
+
+div.checkboxes > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  
+}
+
+div.checkboxes > div > *{
+  /* display: inline; */
+  
+}
+
+
+
+button[type="submit"] {
+  background: white;
+	color: grey;
+	border: 2px grey solid;
+	padding: 5px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  border-radius: 10px;
+  margin: 5px auto;
+  display: block;
+}
+
+button[type="submit"]:hover {
+  background: white;
+  color: orangered;
+  border: 2px orangered solid;
+}
+
+@media only screen and (max-width: 375px) {
+  .master-form-container{
+    background-color: lightblue;
+    width: 95%;
+  
+  }
+}
+
+
+@media only screen and (min-width: 376px) and (max-width: 700px) {
+  .master-form-container{
+    background-color: lightgreen;
+    width: 90%;
+  
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1024px) {
+  .master-form-container{
+    background-color: lightseagreen;
+    width: 75%;
+    height: 100vh;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .master-form-container{
+    background-color: lightyellow;
+    width: 60%;
+    height: 100vh;
+    justify-content: space-evenly;
+  
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1536px) {
+  .master-form-container{
+    background-color: lightpink;
+    width: 50%;
+    height: 100vh;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 1536px) and (max-width: 1920px) {
+  .master-form-container{
+    background-color: lightslategray;
+    width: 40%;
+    height: 100vh;
+    justify-content: space-evenly;
+  
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .master-form-container{
+    background-color: lightsalmon;
+    width: 30%;
+    height: 100vh;
+    justify-content: space-evenly;
+  }
 }
 

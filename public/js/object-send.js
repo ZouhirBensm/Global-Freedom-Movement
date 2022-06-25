@@ -2,7 +2,8 @@
 console.log("in file:1")
 
 async function sendEntryToExpressWebServer(entryobject) {
-  const popup = document.getElementById("popup");
+  // const popup = document.getElementById("popup");
+  console.log(popup)
   console.log(entryobject)
   // console.log(environment, port, domain)
 
@@ -29,14 +30,17 @@ async function sendEntryToExpressWebServer(entryobject) {
   if(response && json_response){
     if(response.ok) {
       popup.innerHTML = json_response.SRV.message[0]
+      popup.style.display = "block";
       popup.style.color = "green";
     } else {
       popup.innerHTML = `Something went wrong, please try later or signal problem <a href="https://webdevelopercanada.website/Zouhir" target="_blank">to website developer</a>`
+      popup.style.display = "block";
       popup.style.color = "red";
       console.log(response, json_response, `Response status from submit: ${response.status}, ${response.statusText}#middle-box2`)
     }
   } else {
     popup.innerHTML = `Something went wrong, please try later or signal problem <a href="https://webdevelopercanada.website/Zouhir" target="_blank">to  website developer</a>`
+    popup.style.display = "block";
     popup.style.color = "red";
     console.log(`Did not receive a response`)
   }
