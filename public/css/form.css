@@ -130,7 +130,7 @@ button[type="submit"]:hover {
   border: 2px orangered solid;
 }
 
-form#form, p#popup {
+form#form, p {
   font-size: var(--fs-Xlarge);
 }
 
