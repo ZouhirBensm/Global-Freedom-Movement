@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
 
-* {
-  outline: rgba(255, 0, 0, 0.38);
+:root {
+  --fs-XXlarge: 4rem;
+  --fs-Xlarge: 2.25rem;
+  --fs-large: 2rem;
+  --fs-medium: 1.5rem;
+  --fs-small: 1rem;
+  --fs-xsmall: .8rem; 
 }
 
 /* input:invalid {
@@ -20,13 +25,17 @@
   position: relative;
   top: -40vh;
   font-family: 'BenchNine', sans-serif;
+  border-radius: 20px;
   /* align-items: stretch; */
+  background-color: rgba(0, 0, 0, 0.788);
+  color: white;
   
 }
 
 .master-form-container > * {
   width: 95%;
   margin: 0 auto;
+  
 }
 
 h2.form-title {
@@ -58,7 +67,12 @@ div.input-elements > div > label[for="idphone2"] > a {
 
 a {
   text-decoration: none;
-  
+  /* color: rgb(22, 38, 252); */
+  color: rgb(184, 184, 184);
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 div.input-elements > div > input {
@@ -79,7 +93,15 @@ div.checkboxes > div {
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  
+  background-color: #ff440093;
+  border-radius: 10px;
+  margin: 2% 10%;
+  padding: 0 4px;
+}
+
+
+div.checkboxes > div:hover {
+  background-color: #ff4400;
 }
 
 div.checkboxes > div > *{
@@ -108,45 +130,103 @@ button[type="submit"]:hover {
   border: 2px orangered solid;
 }
 
+form#form, p#popup {
+  font-size: var(--fs-Xlarge);
+}
+
+i {
+  font-size: var(--fs-XXlarge);
+}
+
+
+/* input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 100%;
+  background-color: white;
+} */
 @media only screen and (max-width: 375px) {
   .master-form-container{
-    background-color: lightblue;
+    /* background-color: lightblue; */
     width: 95%;
-  
+  }
+  div.checkboxes > div {
+    margin: 2% 0;
+  }
+  :root {
+    --fs-XXlarge: 2.4rem;
+    --fs-Xlarge: 1.8rem;
+    --fs-large: 1.2rem;
+    --fs-medium: 0.9rem;
+    --fs-small: 0.8rem;
+    --fs-xsmall: 0.5rem; 
   }
 }
 
 
 @media only screen and (min-width: 376px) and (max-width: 700px) {
   .master-form-container{
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     width: 90%;
-  
+  }
+  div.checkboxes > div {
+    margin: 2% 0;
+  }
+  :root {
+    --fs-XXlarge: 2.4rem;
+    --fs-Xlarge: 1.8rem;
+    --fs-large: 1.2rem;
+    --fs-medium: 0.9rem;
+    --fs-small: 0.8rem;
+    --fs-xsmall: 0.5rem; 
   }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 1024px) {
   .master-form-container{
-    background-color: lightseagreen;
+    /* background-color: lightseagreen; */
     width: 75%;
     height: 100vh;
     justify-content: space-evenly;
+  }
+  /* div.checkboxes > div {
+    margin: 0 0;
+  } */
+  :root {
+    --fs-XXlarge: 3rem;
+    --fs-Xlarge: 2rem;
+    --fs-large: 1.5rem;
+    --fs-medium: 1rem;
+    --fs-small: 0.8rem;
+    --fs-xsmall: 0.5rem; 
   }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   .master-form-container{
-    background-color: lightyellow;
+    /* background-color: lightyellow; */
     width: 60%;
     height: 100vh;
     justify-content: space-evenly;
   
   }
+  :root {
+    --fs-XXlarge: 3rem;
+    --fs-Xlarge: 2rem;
+    --fs-large: 1.5rem;
+    --fs-medium: 1rem;
+    --fs-small: 0.8rem;
+    --fs-xsmall: 0.5rem; 
+  }
 }
 
 @media only screen and (min-width: 1280px) and (max-width: 1536px) {
   .master-form-container{
-    background-color: lightpink;
+    /* background-color: lightpink; */
     width: 50%;
     height: 100vh;
     justify-content: space-evenly;
@@ -155,7 +235,7 @@ button[type="submit"]:hover {
 
 @media only screen and (min-width: 1536px) and (max-width: 1920px) {
   .master-form-container{
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
     width: 40%;
     height: 100vh;
     justify-content: space-evenly;
@@ -164,10 +244,11 @@ button[type="submit"]:hover {
 }
 @media only screen and (min-width: 1920px) {
   .master-form-container{
-    background-color: lightsalmon;
+    /* background-color: lightsalmon; */
     width: 30%;
     height: 100vh;
     justify-content: space-evenly;
   }
+
 }
 

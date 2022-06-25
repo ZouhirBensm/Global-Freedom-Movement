@@ -2,6 +2,22 @@
 const popup = document.getElementById("popup");
 popup.style.display = "none";
 
+
+const checkboxs = document.querySelectorAll('[type="checkbox"]');
+console.log(checkboxs)
+
+for (let index = 0; index < checkboxs.length; index++) {
+  const checkbox = checkboxs[index];
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      checkbox.parentElement.style.backgroundColor = "orangered";
+    } else {
+      checkbox.parentElement.style.backgroundColor = "#ff440093";
+    }
+  });
+  
+}
+
 console.log("format phone live")
 
 const phone2 = document.getElementById("idphone2")

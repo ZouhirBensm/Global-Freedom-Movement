@@ -41,7 +41,10 @@ body, html {
 div.middle-box {
   height: 100vh;
   background-color: white;
-  font-size:36px
+}
+
+div.middle-box > div > h2{
+  font-size: var(--fs-XXlarge)
 }
 
 .Twitter > a > i{

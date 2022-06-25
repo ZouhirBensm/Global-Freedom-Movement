@@ -114,7 +114,7 @@ i {
   position: relative;
   /* position: absolute; */
   z-index: 1;
-  font-size: 1.5rem;
+  font-size: var(--fs-medium);
   width: 50%;
   height: fit-content;
   white-space: nowrap;
