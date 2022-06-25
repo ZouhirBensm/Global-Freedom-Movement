@@ -62,6 +62,24 @@ wserver.get('/', objectifyEnvVars, (req,res)=>{
 })
 
 
+wserver.get('/info/:what', objectifyEnvVars,  (req,res)=>{
+  res.render('info', {
+    content: req.params.what
+  })
+  
+  // switch (req.params.what) {
+  //   case 'phone':
+  //     break;
+  //   case 'burner':
+  //     res.render('burnerinfo')
+  //     break;
+  
+  //   default:
+  //     break;
+  // }
+})
+
+
 wserver.get('/op' , objectifyEnvVars, (req,res)=>{
   res.render('op', {
     environmentVars: res.locals.environmentVars,
